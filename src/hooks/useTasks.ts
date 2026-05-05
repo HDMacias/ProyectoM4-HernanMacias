@@ -28,41 +28,46 @@ export function useTasks() {
       return;
     }
 
-    setLoading(true);
+    const loadTasks = () => {
+      setLoading(true);
 
-    const q = query(
-      collection(db, 'tasks'),
-      where('userId', '==', user.uid)
-    );
+      const q = query(
+        collection(db, 'tasks'),
+        where('userId', '==', user.uid)
+      );
 
-    const unsubscribe = onSnapshot(
-      q,
-      (snapshot) => {
-        const loadedTasks: Task[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          loadedTasks.push({
-            id: doc.id,
-            userId: data.userId,
-            title: data.title,
-            description: data.description || '',
-            completed: data.completed,
-            priority: data.priority,
-            createdAt: data.createdAt?.toDate() || new Date(),
-            updatedAt: data.updatedAt?.toDate() || new Date(),
-            dueDate: data.dueDate?.toDate(),
+      const unsubscribe = onSnapshot(
+        q,
+        (snapshot) => {
+          const loadedTasks: Task[] = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            loadedTasks.push({
+              id: doc.id,
+              userId: data.userId,
+              title: data.title,
+              description: data.description || '',
+              completed: data.completed,
+              priority: data.priority,
+              createdAt: data.createdAt?.toDate() || new Date(),
+              updatedAt: data.updatedAt?.toDate() || new Date(),
+              dueDate: data.dueDate?.toDate(),
+            });
           });
-        });
-        setTasks(loadedTasks);
-        setLoading(false);
-      },
-      (err) => {
-        console.error('Error cargando tareas:', err);
-        setError(err.message);
-        setLoading(false);
-      }
-    );
+          setTasks(loadedTasks);
+          setLoading(false);
+        },
+        (err) => {
+          console.error('Error cargando tareas:', err);
+          setError(err.message);
+          setLoading(false);
+        }
+      );
 
+      return unsubscribe;
+    };
+
+    const unsubscribe = loadTasks();
     return unsubscribe;
   }, [user]);
 
@@ -94,7 +99,7 @@ export function useTasks() {
 
     try {
       const taskRef = doc(db, 'tasks', taskId);
-      const updateData: any = {
+      const updateData: Record<string, unknown> = {
         ...updates,
         updatedAt: Timestamp.now(),
       };

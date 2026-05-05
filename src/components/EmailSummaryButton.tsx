@@ -32,7 +32,7 @@ export function EmailSummaryButton({ tasks, userEmail, userName }: EmailSummaryB
       } else {
         setMessage({ type: 'error', text: result.message });
       }
-    } catch (error) {
+    } catch {
       setMessage({
         type: 'error',
         text: 'Error al enviar el email. Por favor intenta más tarde.',

@@ -5,6 +5,7 @@ import { useTasks } from '../hooks/useTasks';
 import { TaskForm } from '../components/TaskForm';
 import { TaskList } from '../components/TaskList';
 import { EmailSummaryButton } from '../components/EmailSummaryButton';
+import type { CreateTaskInput } from '../types/task';
 import '../styles/tasks.css';
 
 export function Tasks() {
@@ -13,7 +14,7 @@ export function Tasks() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
 
-  const handleCreateTask = async (taskInput: any) => {
+  const handleCreateTask = async (taskInput: CreateTaskInput) => {
     await createTask(taskInput);
   };
 

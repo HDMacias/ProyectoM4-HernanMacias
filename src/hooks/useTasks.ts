@@ -45,7 +45,7 @@ export function useTasks() {
             id: doc.id,
             userId: data.userId,
             title: data.title,
-            description: data.description,
+            description: data.description || '',
             completed: data.completed,
             priority: data.priority,
             createdAt: data.createdAt?.toDate() || new Date(),
@@ -74,7 +74,7 @@ export function useTasks() {
       const docRef = await addDoc(collection(db, 'tasks'), {
         userId: user.uid,
         title: taskInput.title,
-        description: taskInput.description,
+        description: taskInput.description || '',
         completed: false,
         priority: taskInput.priority || 'medium',
         dueDate: taskInput.dueDate ? Timestamp.fromDate(taskInput.dueDate) : null,

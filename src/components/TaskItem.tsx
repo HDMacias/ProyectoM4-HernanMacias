@@ -84,7 +84,7 @@ export function TaskItem({ task, onUpdate, onDelete }: TaskItemProps) {
         />
         <select
           value={priority}
-          onChange={(e) => setPriority(e.target.value)}
+          onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
           className="edit-select"
         >
           <option value="low">Baja</option>

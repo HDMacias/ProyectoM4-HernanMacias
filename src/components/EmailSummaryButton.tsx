@@ -5,8 +5,8 @@ import '../styles/components.css';
 
 interface EmailSummaryButtonProps {
   tasks: Task[];
-  userEmail: string | undefined;
-  userName: string;
+  userEmail?: string;
+  userName?: string;
 }
 
 export function EmailSummaryButton({ tasks, userEmail, userName }: EmailSummaryButtonProps) {
@@ -14,8 +14,8 @@ export function EmailSummaryButton({ tasks, userEmail, userName }: EmailSummaryB
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const handleSendEmail = async () => {
-    if (!userEmail) {
-      setMessage({ type: 'error', text: 'Email no disponible' });
+    if (!userEmail || !userName) {
+      setMessage({ type: 'error', text: 'Email o nombre no disponible' });
       return;
     }
 

@@ -13,6 +13,10 @@ export function Tasks() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
 
+  const handleCreateTask = async (taskInput: any) => {
+    await createTask(taskInput);
+  };
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -41,7 +45,7 @@ export function Tasks() {
       </header>
 
       <main className="tasks-main">
-        <TaskForm onSubmit={createTask} />
+        <TaskForm onSubmit={handleCreateTask} />
 
         <div className="filter-buttons">
           <button
@@ -66,7 +70,7 @@ export function Tasks() {
 
         <EmailSummaryButton
           tasks={tasks}
-          userEmail={user?.email}
+          userEmail={user?.email || undefined}
           userName={user?.email?.split('@')[0] || 'Usuario'}
         />
 

@@ -1,5 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
-import { ReactNode } from 'react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock de useAuth hook
 const mockUseAuth = vi.fn();

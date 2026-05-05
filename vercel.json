@@ -1,0 +1,25 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "nodeVersion": "18.x",
+  "env": {
+    "VITE_FIREBASE_API_KEY": "@firebase_api_key",
+    "VITE_FIREBASE_AUTH_DOMAIN": "@firebase_auth_domain",
+    "VITE_FIREBASE_PROJECT_ID": "@firebase_project_id",
+    "VITE_FIREBASE_STORAGE_BUCKET": "@firebase_storage_bucket",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "@firebase_messaging_sender_id",
+    "VITE_FIREBASE_APP_ID": "@firebase_app_id",
+    "AWS_ACCESS_KEY_ID": "@aws_access_key_id",
+    "AWS_SECRET_ACCESS_KEY": "@aws_secret_access_key",
+    "AWS_SES_REGION": "@aws_ses_region",
+    "AWS_SES_FROM_EMAIL": "@aws_ses_from_email"
+  },
+  "functions": {
+    "api/sendEmail.ts": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  }
+}

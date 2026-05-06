@@ -156,6 +156,11 @@ npm run lint         # Linter
 - [React Router](https://reactrouter.com)
 - [TypeScript](https://www.typescriptlang.org)
 
+## Enlaces importantes
+
+- Repositorio: https://github.com/HDMacias/ProyectoM4-HernanMacias.git
+- Despliegue: https://task-manager-hdmacias.vercel.app
+
 ## 📄 Licencia
 
 Proyecto Integrador 4 - Soy Henry

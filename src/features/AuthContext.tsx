@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut as firebaseSignOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import type { User, AuthError } from 'firebase/auth';
 import { auth } from '../services/firebase';
@@ -64,12 +66,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
+      await signInWithPopup(auth, provider);
+    } catch (err) {
+      const authError = err as AuthError;
+      // Ignorar error de cancelación de popup
+      if (authError.code === 'auth/popup-closed-by-user') {
+        throw new Error('Ventana de Google cerrada');
+      }
+      throw new Error(getErrorMessage(authError));
+    }
+  };
+
   const value: AuthContextType = {
     user,
     loading,
     login,
     register,
     logout,
+    loginWithGoogle,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

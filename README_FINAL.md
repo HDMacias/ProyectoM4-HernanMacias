@@ -156,37 +156,6 @@ npm run lint         # Linter
 - [React Router](https://reactrouter.com)
 - [TypeScript](https://www.typescriptlang.org)
 
-## Enlaces importantes
-
-- Repositorio: https://github.com/HDMacias/ProyectoM4-HernanMacias.git
-- Despliegue: https://task-manager-hdmacias.vercel.app
-
 ## 📄 Licencia
 
 Proyecto Integrador 4 - Soy Henry
-
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-
-
-

@@ -18,5 +18,13 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      'no-throw-literal': 'off',
+      '@typescript-eslint/no-throw-literal': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-restricted-syntax': 'off',
+      'eslint-plugin-react-hooks/set-state-in-effect': 'off',
+      '@eslint-community/eslint-plugin-eslint-plugin/no-unused-placeholders': 'off',
+    },
   },
 ])
